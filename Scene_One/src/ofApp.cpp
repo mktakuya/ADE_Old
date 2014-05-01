@@ -1,65 +1,60 @@
 #include "ofApp.h"
 #include "Drawfigure.h"
 
-
+#define OUTLINE 3.5
 #define N 5
 
-Drawfigure circle, circle2;
-float colorparam[4][3] = { {255, 238, 2}, {131, 255, 0}, {0, 246, 255}, {255, 0, 191} };
-float xloc/*[N]= { ofGetWidth() / 2.0 }*/, yloc/*[5] = { ofGetHeight() / 2.0 }*/;
-float speed_x/*[N] = {10.0, 3.0, 7.0, 40.0, 18.0}*/, speed_y/*[N] = {18.0, 40.0, 7.0, 3.0, 10.0}*/;
+Drawfigure circle, judg;
+float colorparam[4][3] = { {255, 206, 10}, {131, 255, 0}, {20, 246, 255}, {255, 0, 191} };
+//oneCircle
+float xCircleLocation, yCircleLocation; //x, yの始点
+float accelx, accely; //移動速度
+
+//oneTriangle
+float xTraingleLocation[3][3], yTriangleLocation[3][3];
+
+//oneTrapezoid
+
 
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-	//ofEnableAlphaBlending();
 	ofBackground(255);
 	ofSetCircleResolution(64);
 
-	xloc = ofGetWidth() / 2.0;
-	yloc = ofGetHeight() / 2.0;
-	speed_x = 140;
-	speed_y = 50;
+	//oneCircle
+	xCircleLocation = ofGetWidth() / 4.0;//始点のx座標を定義
+	yCircleLocation = ofGetHeight() / 3.0;//始点のy座標を定義
+
+	accelx = 110;//速度を定義
+	accely = 120;//速度を定義
+
+	//oneTriangle
 
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
-	//for(i = 0; i < N; i++){
-		//xloc[i] += speed_x[i];
-		//yloc[i] += speed_y[i];
-	//}
-	xloc += speed_x;
-	yloc += speed_y;
+	//oneCircle
+	xCircleLocation += accelx;
+	yCircleLocation += accely;
 
-	speed_x = speed_x * circle.judgment(xloc, speed_x, 'x');
-	speed_y = speed_y * circle.judgment(yloc, speed_y, 'y');
+	accelx *= judg.judgment(xCircleLocation, 'x');
+	accely *= judg.judgment(yCircleLocation, 'y');
 
-	/*if (xloc < 0 || xloc > ofGetWidth()) {
-		speed_x *= -1;
-	}*/
+	//oneTriangle
 
-	/*if (yloc < 0 || yloc > ofGetHeight()) {
-		speed_y *= -1;
-	}*/
-
-	//for(i = 0; i < N; i++){
-		//speed_x[i] = jud.judgment(xloc[i], speed_x[i], 'x');
-		//speed_y[i] = jud.judgment(yloc[i], speed_y[i], 'y');
-	//}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-	circle.oneCircle(xloc, yloc, 50, 5, colorparam[rand() % 4]);
-	circle2.oneCircle(yloc, xloc, 70, 5, colorparam[rand() % 4]);
-	//circle[1].oneCircle(xloc[1], yloc[1], 80, 3, colorparam[rand() % 4]);
-	//circle[2].oneCircle(xloc[2], yloc[2], 80, 3, colorparam[rand() % 4]);
-	//circle[3].oneCircle(xloc[3], yloc[3], 80, 3, colorparam[rand() % 4]);
-	//circle[4].oneCircle(xloc[4], yloc[4], 80, 3, colorparam[rand() % 4]);
+	//oneCircle
+	circle.oneCircle(xCircleLocation, yCircleLocation, 50 + rand()%50, OUTLINE, colorparam[rand() % 4]);
+	circle.oneCircle(yCircleLocation, xCircleLocation, 50 + rand()%50, OUTLINE, colorparam[rand() % 4]);
 
+	//oneTriangle
 }
 
 //--------------------------------------------------------------
