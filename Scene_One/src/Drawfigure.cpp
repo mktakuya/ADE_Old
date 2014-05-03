@@ -4,34 +4,33 @@
 void Drawfigure::oneCircle(float x, float y, float diameter, float diff, float *color) {
 
 	ofSetColor(color[0], color[1], color[2]);
+	ofNoFill();
+	ofSetLineWidth(diff);
 	ofCircle(x, y, diameter);
-	ofSetColor(255);
-
-	ofCircle(x, y, diameter - diff);
 
 }
 
-void Drawfigure::oneTriangle(float x1, float y1, float x2, float y2, float x3, float y3, float *color) {
+void Drawfigure::oneTriangle(float *x, float *y, float diff, float *color) {
 
-	ofSetLineWidth(3);
 	ofSetColor(color[0], color[1], color[2]);
 	ofNoFill();
+	ofSetLineWidth(diff);
 
-	ofTriangle(x1, y1, x2, y2, x3, y3);
+	ofTriangle(x[0], y[0], x[1], y[1], x[2], y[2]);
 
 }
 
-void Drawfigure::oneTrapezoid(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float diff, float *color) {
+void Drawfigure::oneTrapezoid(float *x, float *y, float diff, float *color) {
 
 	ofSetColor(color[0], color[1], color[2]);
 	ofNoFill();
-	ofSetLineWidth(3);
+	ofSetLineWidth(diff);
 
 	ofBeginShape();
-		ofVertex(x1, y1);
-		ofVertex(x2, y2);
-		ofVertex(x3, y3);
-		ofVertex(x4, y4);
+		ofVertex(x[0], y[0]);
+		ofVertex(x[1], y[1]);
+		ofVertex(x[2], y[2]);
+		ofVertex(x[3], y[3]);
 	ofEndShape();
 
 }
@@ -46,10 +45,10 @@ float Drawfigure::judgment(float location, char xy) {
 			if (location < 0 || location > ofGetWidth()) {
 				frag = -1;
 			}
-			else {
+
+			else{
 				frag = 1;
 			}
-
 			break;
 
 		case 'y':
@@ -58,7 +57,7 @@ float Drawfigure::judgment(float location, char xy) {
 				frag = -1;
 			}
 
-			else {
+			else{
 				frag = 1;
 			}
 			break;

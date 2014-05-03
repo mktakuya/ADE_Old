@@ -2,59 +2,81 @@
 #include "Drawfigure.h"
 
 #define OUTLINE 3.5
-#define N 5
+#define N 3
 
-Drawfigure circle, judg;
-float colorparam[4][3] = { {255, 206, 10}, {131, 255, 0}, {20, 246, 255}, {255, 0, 191} };
-//oneCircle
-float xCircleLocation, yCircleLocation; //x, yの始点
-float accelx, accely; //移動速度
+Drawfigure circle, triangle, judg;
+float colorparam[4][3] = { {255, 206, 10}, {131, 255, 0}, {20, 246, 255}, {250, 0, 191} };
 
-//oneTriangle
-float xTraingleLocation[3][3], yTriangleLocation[3][3];
+//oneCircle declaration
+float xCircleLocation, yCircleLocation;
+float CircleAccelx, CircleAccely;
 
-//oneTrapezoid
+//oneTriangle declaration
+float xTriangleLocation[3] = {70, 55, 75};
+float yTriangleLocation[3] = {20, 40, 38};
+float TriangleAccelx[3];
+float TriangleAccely[3];
+
+//oneTrapezoid declaration
 
 
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-	ofBackground(255);
+	ofBackground(0);
 	ofSetCircleResolution(64);
+	ofEnableSmoothing();
 
-	//oneCircle
-	xCircleLocation = ofGetWidth() / 4.0;//始点のx座標を定義
-	yCircleLocation = ofGetHeight() / 3.0;//始点のy座標を定義
+	//oneCircle setup
+	xCircleLocation = ofGetWidth() / 4.0;
+	yCircleLocation = ofGetHeight() / 3.0;
 
-	accelx = 110;//速度を定義
-	accely = 120;//速度を定義
+	CircleAccelx = 55;
+	CircleAccely = 60;
 
-	//oneTriangle
-
+	//oneTriangle setup
+	for (int i = 0; i < N; i++){
+		TriangleAccelx[i] = 60 - (i + 1) * 10;
+		TriangleAccely[i] = 20 + (i + 1) * 10;
+	}
+	
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
-	//oneCircle
-	xCircleLocation += accelx;
-	yCircleLocation += accely;
+	//oneCircle update
+	xCircleLocation += CircleAccelx;
+	yCircleLocation += CircleAccely;
 
-	accelx *= judg.judgment(xCircleLocation, 'x');
-	accely *= judg.judgment(yCircleLocation, 'y');
+	CircleAccelx *= judg.judgment(xCircleLocation, 'x');
+	CircleAccely *= judg.judgment(yCircleLocation, 'y');
 
-	//oneTriangle
 
-}
+	//oneTriangle update
+	for (int i = 0; i < N; i++){
+
+		xTriangleLocation[i] += TriangleAccelx[i];
+		yTriangleLocation[i] += TriangleAccely[i];
+
+		TriangleAccelx[i] *= judg.judgment(xTriangleLocation[i], 'x');
+		TriangleAccely[i] *= judg.judgment(yTriangleLocation[i], 'y');
+
+	}
+
+}	
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-	//oneCircle
-	circle.oneCircle(xCircleLocation, yCircleLocation, 50 + rand()%50, OUTLINE, colorparam[rand() % 4]);
-	circle.oneCircle(yCircleLocation, xCircleLocation, 50 + rand()%50, OUTLINE, colorparam[rand() % 4]);
+	//oneCircle drawing
+	circle.oneCircle(xCircleLocation, yCircleLocation, 50 + rand()%50, OUTLINE + 0.5, colorparam[rand() % 4]);
+	circle.oneCircle(yCircleLocation, xCircleLocation, 50 + rand()%50, OUTLINE + 0.5, colorparam[rand() % 4]);
 
-	//oneTriangle
+	//oneTriangle drawing
+	triangle.oneTriangle(xTriangleLocation, yTriangleLocation, OUTLINE, colorparam[rand() % 4]);
+	triangle.oneTriangle(yTriangleLocation, xTriangleLocation, OUTLINE, colorparam[rand() % 4]);
+
 }
 
 //--------------------------------------------------------------
