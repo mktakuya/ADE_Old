@@ -1,4 +1,4 @@
-#include "ofApp.h"
+#include "Triangles.h"
 #include "Drawfigure.h"
 
 #define OUTLINE 2
@@ -21,21 +21,21 @@ float TriangleAccely[3];
 
 
 //--------------------------------------------------------------
-void ofApp::setup(){
-
+void Triangles::setup(){
+    
 	ofBackground(0);
 	ofSetCircleResolution(64);
 	ofEnableSmoothing();
-
+    
 	//oneCircle setup
 	xCircleLocation = ofGetWidth() / 2.0;
 	yCircleLocation = ofGetHeight() / 2.0;
-
+    
 	CircleAccelx = 10;
 	CircleAccely = 25;
 	CircleAccelx2 = CircleAccely;
 	CircleAccely2 = CircleAccelx;
-
+    
 	//oneTriangle setup
 	for (int i = 0; i < N; i++){
 		xTriangleLocation[0][i] = ofGetWidth() / 2.0;
@@ -47,93 +47,93 @@ void ofApp::setup(){
 }
 
 //--------------------------------------------------------------
-void ofApp::update(){
-
+void Triangles::update(){
+    
 	ofBackground(0);
-
+    
 	//oneCircle update
 	xCircleLocation += CircleAccelx;
 	xCircleLocation2 += CircleAccelx2;
 	yCircleLocation += CircleAccely;
 	yCircleLocation2 += CircleAccely2;
-
+    
 	CircleAccelx *= judg.judgment(xCircleLocation, 'x');
 	CircleAccelx2 *= judg.judgment(xCircleLocation2, 'x');
 	CircleAccely *= judg.judgment(yCircleLocation, 'y');
 	CircleAccely2 *= judg.judgment(yCircleLocation2, 'y');
-
+    
 	//oneTriangle update
 	for (int i = 0; i < N; i++){
-
+        
 		xTriangleLocation[0][i] += TriangleAccelx[i];
 		yTriangleLocation[0][i] += TriangleAccely[i];
 		xTriangleLocation[1][i] = (ofGetWidth() / 2.0 - xTriangleLocation[0][i]) * 2 + xTriangleLocation[0][i];
 		yTriangleLocation[1][i] = (ofGetHeight() / 2.0 - yTriangleLocation[0][i]) * 2 + yTriangleLocation[0][i];
-
+        
 		TriangleAccelx[i] *= judg.judgment(xTriangleLocation[0][i], 'x');
 		TriangleAccely[i] *= judg.judgment(yTriangleLocation[0][i], 'y');
-
+        
 	}
-
-
+    
+    
 }	
 
 //--------------------------------------------------------------
-void ofApp::draw(){
-
+void Triangles::draw(){
+    
 	//oneCircle drawing
 	circle.oneCircle(xCircleLocation, yCircleLocation, 70, OUTLINE + 0.5, colorparam[rand() % 4]);
 	circle.oneCircle((ofGetWidth() / 2.0 - xCircleLocation) * 2 + xCircleLocation, (ofGetHeight() / 2.0 - yCircleLocation) * 2 + yCircleLocation, 80, OUTLINE + 0.5, colorparam[rand() % 4]);
 	circle.oneCircle(xCircleLocation2, yCircleLocation2, 70, OUTLINE + 0.5, colorparam[rand() % 4]);
 	circle.oneCircle((ofGetWidth() / 2.0 - xCircleLocation2) * 2 + xCircleLocation2, (ofGetHeight() / 2.0 - yCircleLocation2) * 2 + yCircleLocation2, 90, OUTLINE + 0.5, colorparam[rand() % 4]);
-
+    
 	//oneTriangle drawing
 	triangle.oneTriangle(xTriangleLocation[0], yTriangleLocation[0], OUTLINE, colorparam[rand() % 4]);
 	triangle.oneTriangle(xTriangleLocation[1], yTriangleLocation[1], OUTLINE, colorparam[rand() % 4]);
-
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-
+void Triangles::keyPressed(int key){
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-
+void Triangles::keyReleased(int key){
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y){
-
+void Triangles::mouseMoved(int x, int y){
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
+void Triangles::mouseDragged(int x, int y, int button){
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
+void Triangles::mousePressed(int x, int y, int button){
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
+void Triangles::mouseReleased(int x, int y, int button){
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
+void Triangles::windowResized(int w, int h){
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
+void Triangles::gotMessage(ofMessage msg){
+    
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+void Triangles::dragEvent(ofDragInfo dragInfo){
+    
 }
