@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofBackground(0);
     ofSetBackgroundAuto(true);
     //ofSetFullscreen(true);
     ofSetFrameRate(60);
@@ -22,6 +23,34 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    switch (backgroundNumber) {
+        case 0:
+            backgroundR = 0;
+            backgroundG = 0;
+            backgroundB = 0;
+            break;
+        case 1:
+            backgroundR = 255;
+            backgroundG = 255;
+            backgroundB = 255;
+            break;
+        case 2:
+            backgroundR = 0;
+            backgroundG = 255;
+            backgroundB = 255;
+            break;
+        case 3:
+            backgroundR = 255;
+            backgroundG = 0;
+            backgroundB = 255;
+            break;
+        case 4:
+            backgroundR = 255;
+            backgroundG = 212;
+            backgroundB = 0;
+            break;
+    }
+
     switch (sceneNumber) {
         case 0:
             ofSetBackgroundAuto(false);
@@ -31,16 +60,19 @@ void ofApp::update(){
             scene0.update();
             break;
         case 1:
-            //ofBackground();
+            ofBackground(128, 128, 128);
             ofSetBackgroundAuto(true);
             //scene1.update();
             break;
         case 2:
-            ofBackground(255);
+            //ofBackground(255);
             ofNoFill();
+            ofSetBackgroundAuto(true);
+            ofBackground(backgroundR, backgroundG, backgroundB);
             scene2.update();
             break;
         case 3:
+            ofBackground(128, 128, 128);
             //scene3.update();
             break;
         case 4:
@@ -54,11 +86,13 @@ void ofApp::update(){
             scene5.update();
             break;
         case 6:
-            ofBackground(255);
-            ofFill();
+            ofBackground(backgroundR, backgroundG, backgroundB);
+            ofSetBackgroundAuto(true);
+            ofNoFill();
             scene6.update();
             break;
         case 7:
+            ofBackground(128, 128, 128);
             //scene7.update();
             break;
     }
@@ -96,6 +130,16 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+    int prevBackgroundNumber = backgroundNumber;
+    if (key == ' ') {
+        while (1) {
+            backgroundNumber = ofRandom(0, 5);
+            if (backgroundNumber != prevBackgroundNumber) {
+                break;
+            }
+        }
+    }
+
     switch (key) {
         case '0':
             sceneNumber = 0;
