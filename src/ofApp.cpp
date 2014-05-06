@@ -50,9 +50,10 @@ void ofApp::update(){
             backgroundB = 0;
             break;
     }
-
+    
     switch (sceneNumber) {
         case 0:
+            ofSetFrameRate(60);
             ofSetBackgroundAuto(false);
             ofSetColor(0, 0, 0, 23);
             ofRect(0, 0, ofGetWidth(), ofGetHeight());
@@ -60,11 +61,13 @@ void ofApp::update(){
             scene0.update();
             break;
         case 1:
+            ofSetFrameRate(60);
             ofBackground(128, 128, 128);
             ofSetBackgroundAuto(true);
             //scene1.update();
             break;
         case 2:
+            ofSetFrameRate(60);
             //ofBackground(255);
             ofNoFill();
             ofSetBackgroundAuto(true);
@@ -72,26 +75,31 @@ void ofApp::update(){
             scene2.update();
             break;
         case 3:
+            ofSetFrameRate(60);
             ofBackground(128, 128, 128);
             //scene3.update();
             break;
         case 4:
+            ofSetFrameRate(60);
             ofBackground(255);
             ofFill();
             scene4.update();
             break;
         case 5:
+            ofSetFrameRate(60);
             ofBackground(0);
             ofNoFill();
             scene5.update();
             break;
         case 6:
-            ofBackground(backgroundR, backgroundG, backgroundB);
+            ofSetFrameRate(45);
+            ofBackground(255);
             ofSetBackgroundAuto(true);
             ofNoFill();
             scene6.update();
             break;
         case 7:
+            ofSetFrameRate(60);
             ofBackground(128, 128, 128);
             //scene7.update();
             break;
@@ -139,7 +147,7 @@ void ofApp::keyPressed(int key){
             }
         }
     }
-
+    
     switch (key) {
         case '0':
             sceneNumber = 0;
