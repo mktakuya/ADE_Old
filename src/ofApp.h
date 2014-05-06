@@ -25,6 +25,11 @@ public:
     
     int sceneNumber;
     
+    int backgroundNumber;
+    int backgroundR;
+    int backgroundG;
+    int backgroundB;
+    
     OpeningTitle scene0; // Opening Title
     // HogeClass scene1; // イントロ
     Bubbles scene2; // Aメロ
