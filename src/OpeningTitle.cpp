@@ -60,8 +60,8 @@ void OpeningTitle::update(){
     }else if (frame / 60.0 < 11.0) {
         message = "1";
         rect = font.getStringBoundingBox(message, 0, 0);
-    }else if (frame / 60.9 < 14.0) {
-        message = "START!";
+    }else {
+        message = "";
         rect = font.getStringBoundingBox(message, 0, 0);
     }
 }
