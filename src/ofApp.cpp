@@ -62,9 +62,9 @@ void ofApp::update(){
             break;
         case 1:
             ofSetFrameRate(60);
-            ofBackground(128, 128, 128);
+            ofBackground(255);
             ofSetBackgroundAuto(true);
-            //scene1.update();
+            scene1.update();
             break;
         case 2:
             ofSetFrameRate(60);
@@ -113,7 +113,7 @@ void ofApp::draw(){
             scene0.draw();
             break;
         case 1:
-            //scene1.draw();
+            scene1.draw();
             break;
         case 2:
             scene2.draw();

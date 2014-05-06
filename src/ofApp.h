@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Intro.h"
 #include "OpeningTitle.h"
 #include "Triangles.h"
 #include "Bubbles.h"
@@ -31,7 +32,7 @@ public:
     int backgroundB;
     
     OpeningTitle scene0; // Opening Title
-    // HogeClass scene1; // イントロ
+    Intro scene1; // イントロ
     Bubbles scene2; // Aメロ
     // Lines scene3; // Bメロ
     Tile scene4; // サビ

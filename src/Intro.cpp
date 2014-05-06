@@ -1,4 +1,4 @@
-#include "ofApp.h"
+#include "Intro.h"
 #include "Drawfigure.h"
 
 #define OUTLINE 3
@@ -17,7 +17,7 @@ float t = 1;
 
 
 //--------------------------------------------------------------
-void ofApp::setup(){
+void Intro::setup(){
 
 	ofBackground(255);
 	ofSetCircleResolution(64);
@@ -36,7 +36,7 @@ void ofApp::setup(){
 }
 
 //--------------------------------------------------------------
-void ofApp::update(){
+void Intro::update(){
 
 	//oneCircle update
 	for(int i = 0; i < PARTICLES; i++){
@@ -49,7 +49,7 @@ void ofApp::update(){
 }	
 
 //--------------------------------------------------------------
-void ofApp::draw(){
+void Intro::draw(){
 	
 	//oneCircle drawing
 	for(int i = 0; i < PARTICLES; i++){
