@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetBackgroundAuto(true);
-    ofSetFullscreen(true);
+    //ofSetFullscreen(true);
     ofSetFrameRate(60);
     
     ofSetCircleResolution(64);

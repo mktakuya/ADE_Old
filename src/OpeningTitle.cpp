@@ -5,7 +5,7 @@ ofRectangle rect;
 //--------------------------------------------------------------
 void OpeningTitle::setup(){
     ofBackground(0);
-    ofSetFullscreen(true);
+    //ofSetFullscreen(true);
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
     font.loadFont("Play-Regular.ttf", 80);
