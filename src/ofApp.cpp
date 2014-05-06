@@ -16,7 +16,7 @@ void ofApp::setup(){
     scene2.setup();
     //scene3.setup();
     scene4.setup();
-    scene5.setup();
+    //scene5.setup();
     scene6.setup();
     //scene7.setup();
 }
@@ -89,7 +89,7 @@ void ofApp::update(){
             ofSetFrameRate(60);
             ofBackground(0);
             ofNoFill();
-            scene5.update();
+            //scene5.update();
             break;
         case 6:
             ofSetFrameRate(45);
@@ -125,7 +125,7 @@ void ofApp::draw(){
             scene4.draw();
             break;
         case 5:
-            scene5.draw();
+            //scene5.draw();
             break;
         case 6:
             scene6.draw();

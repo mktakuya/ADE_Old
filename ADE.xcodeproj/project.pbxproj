@@ -11,7 +11,6 @@
 		8F08F8001917F3D600D1E7AD /* Drawfigure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F08F7F71917F3D500D1E7AD /* Drawfigure.cpp */; };
 		8F08F8011917F3D600D1E7AD /* OpeningTitle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F08F7F91917F3D500D1E7AD /* OpeningTitle.cpp */; };
 		8F08F8021917F3D600D1E7AD /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F08F7FB1917F3D500D1E7AD /* Tile.cpp */; };
-		8F08F8031917F3D600D1E7AD /* Triangles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F08F7FD1917F3D600D1E7AD /* Triangles.cpp */; };
 		8F8A1C7D191921820076369C /* Intro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A1C7B191921820076369C /* Intro.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -73,8 +72,6 @@
 		8F08F7FA1917F3D500D1E7AD /* OpeningTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpeningTitle.h; sourceTree = "<group>"; };
 		8F08F7FB1917F3D500D1E7AD /* Tile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tile.cpp; sourceTree = "<group>"; };
 		8F08F7FC1917F3D500D1E7AD /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
-		8F08F7FD1917F3D600D1E7AD /* Triangles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Triangles.cpp; sourceTree = "<group>"; };
-		8F08F7FE1917F3D600D1E7AD /* Triangles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangles.h; sourceTree = "<group>"; };
 		8F8A1C7B191921820076369C /* Intro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Intro.cpp; sourceTree = "<group>"; };
 		8F8A1C7C191921820076369C /* Intro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intro.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../openFrameworks/libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
@@ -142,8 +139,6 @@
 				8F08F7FA1917F3D500D1E7AD /* OpeningTitle.h */,
 				8F08F7FB1917F3D500D1E7AD /* Tile.cpp */,
 				8F08F7FC1917F3D500D1E7AD /* Tile.h */,
-				8F08F7FD1917F3D600D1E7AD /* Triangles.cpp */,
-				8F08F7FE1917F3D600D1E7AD /* Triangles.h */,
 			);
 			name = scenes;
 			sourceTree = "<group>";
@@ -322,7 +317,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
-				8F08F8031917F3D600D1E7AD /* Triangles.cpp in Sources */,
 				8F08F7FF1917F3D600D1E7AD /* Bubbles.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				8F08F8021917F3D600D1E7AD /* Tile.cpp in Sources */,

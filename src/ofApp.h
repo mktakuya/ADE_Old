@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "Intro.h"
 #include "OpeningTitle.h"
-#include "Triangles.h"
+//#include "Triangles.h"
 #include "Bubbles.h"
 #include "Tile.h"
 
@@ -36,7 +36,7 @@ public:
     Bubbles scene2; // Aメロ
     // Lines scene3; // Bメロ
     Tile scene4; // サビ
-    Triangles scene5; // Cメロ
+    //Triangles scene5; // Cメロ
     Bubbles scene6; // ラストサビ前半
     // HogeClass scene7; // ラストサビ後半
 };
