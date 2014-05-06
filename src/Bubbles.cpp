@@ -4,7 +4,7 @@
 //--------------------------------------------------------------
 void Bubbles::setup(){
     ofBackground(255);
-    ofSetLineWidth(3);
+    ofSetLineWidth(0.8);
     for (int i = 0; i < BUBBLES_NUM; i++) {
         bubbleR[i] = ofRandom(255);
         bubbleG[i] = ofRandom(255);
