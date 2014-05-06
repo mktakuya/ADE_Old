@@ -24,11 +24,15 @@ void ofApp::setup(){
 void ofApp::update(){
     switch (sceneNumber) {
         case 0:
-            ofBackground(0);
+            ofSetBackgroundAuto(false);
+            ofSetColor(0, 0, 0, 23);
+            ofRect(0, 0, ofGetWidth(), ofGetHeight());
             ofFill();
             scene0.update();
             break;
         case 1:
+            //ofBackground();
+            ofSetBackgroundAuto(true);
             //scene1.update();
             break;
         case 2:
