@@ -8,8 +8,8 @@ void OpeningTitle::setup(){
     //ofSetFullscreen(true);
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
-    font.loadFont("Play-Regular.ttf", 80);
-    rect = font.getStringBoundingBox("2014 TNCT School Festival", 0, 0);
+    font.loadFont("Play-Regular.ttf", 70);
+    rect = font.getStringBoundingBox("TNCT School Festival", 0, 0);
     frame = 0;
 }
 
@@ -17,7 +17,7 @@ void OpeningTitle::setup(){
 void OpeningTitle::update(){
     frame++;
     if (frame / 60.0 < 3) {
-        message = "2014 TNCT School Festival";
+        message = "TNCT School Festival";
         rect = font.getStringBoundingBox(message, 0, 0);
         fontX = ofGetWidth() / 2;
         fontY = ofGetHeight() / 2;
@@ -27,7 +27,7 @@ void OpeningTitle::update(){
     }else if (frame / 60.0 < 4.5) {
         message = "Dance Club";
         rect = font.getStringBoundingBox(message, 0, 0);
-        fontX = ofGetWidth() / 2 - rect.width * 0.7;
+        fontX = ofGetWidth() / 2 - rect.width * 0.5;
         fontY = ofGetHeight() - rect.height / 2;
     }else if (frame / 60.0 < 5.0) {
         message = "";
@@ -35,7 +35,7 @@ void OpeningTitle::update(){
     }else if (frame / 60.0 < 6.0) {
         message = "Art Club";
         rect = font.getStringBoundingBox(message, 0, 0);
-        fontX = ofGetWidth() - rect.width * 0.7;
+        fontX = ofGetWidth() - rect.width * 0.6;
         fontY = rect.height / 2 + rect.height;
     }else if (frame / 60.0 < 6.5) {
         message = "";
