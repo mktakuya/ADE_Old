@@ -12,7 +12,7 @@ void ofApp::setup(){
     sceneNumber = 0;
     
     scene0.setup();
-    //scene1.setup();
+    scene1.setup();
     scene2.setup();
     //scene3.setup();
     scene4.setup();
