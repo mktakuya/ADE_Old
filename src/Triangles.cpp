@@ -1,139 +1,77 @@
-#include "Triangles.h"
+#include "ofApp.h"
 #include "Drawfigure.h"
 
-#define OUTLINE 2
-#define N 3
+#define OUTLINE 3
+#define PIECES 120
+#define XBOADER 600
+#define YBOADER 300
 
-Drawfigure circle, triangle, judg;
+//Decralation color parameters
 float colorparam[4][3] = { {255, 206, 10}, {131, 255, 0}, {20, 246, 255}, {250, 0, 191} };
 
-//oneCircle declaration
-float xCircleLocation, xCircleLocation2, yCircleLocation, yCircleLocation2;
-float CircleAccelx, CircleAccelx2, CircleAccely, CircleAccely2;
+//Decralation Drawfigure instance to use locationJudgment2
+Drawfigure judg;
 
-//oneTriangle declaration
-float xTriangleLocation[2][3];
-float yTriangleLocation[2][3];
-float TriangleAccelx[3];
-float TriangleAccely[3];
-
-//oneTrapezoid declaration
+//drawTriangle decralation
+Drawfigure triangle;
+ofVec2f TrianglePositionVector[PIECES][3];
+ofVec2f TriangleDirectionVector[PIECES];
+float gravity, friction;
+int pattern[PIECES];
 
 
 //--------------------------------------------------------------
-void Triangles::setup(){
-    
+void ofApp::setup(){
 	ofBackground(0);
-	ofSetCircleResolution(64);
 	ofEnableSmoothing();
-    
-	//oneCircle setup
-	xCircleLocation = ofGetWidth() / 2.0;
-	yCircleLocation = ofGetHeight() / 2.0;
-    
-	CircleAccelx = 10;
-	CircleAccely = 25;
-	CircleAccelx2 = CircleAccely;
-	CircleAccely2 = CircleAccelx;
-    
-	//oneTriangle setup
-	for (int i = 0; i < N; i++){
-		xTriangleLocation[0][i] = ofGetWidth() / 2.0;
-		TriangleAccelx[i] = 40 - (i + 1) * 10 ;
-		yTriangleLocation[0][i] = ofGetHeight() / 2.0;
-		TriangleAccely[i] = 20 + (i + 1) * 10;
+	ofEnableAlphaBlending();
+	ofEnableSmoothing();
+
+	gravity = 0.07;
+	friction = 0.999;
+
+	for(int cnt = 0; cnt < PIECES; cnt++){
+		for(int ct = 0; ct < 3; ct++){
+			TrianglePositionVector[cnt][ct].x = ofRandom(XBOADER, ofGetWidth() - XBOADER);
+			TrianglePositionVector[cnt][ct].y = ofRandom(YBOADER, ofGetHeight() - YBOADER);
+			TriangleDirectionVector[cnt].x = ofRandom(-10, 10);
+			TriangleDirectionVector[cnt].y = ofRandom(-10, 10);
+			pattern[cnt] = ofRandom(0, 2);
+		}
 	}
-	
 }
 
 //--------------------------------------------------------------
-void Triangles::update(){
-    
-	ofBackground(0);
-    
-	//oneCircle update
-	xCircleLocation += CircleAccelx;
-	xCircleLocation2 += CircleAccelx2;
-	yCircleLocation += CircleAccely;
-	yCircleLocation2 += CircleAccely2;
-    
-	CircleAccelx *= judg.judgment(xCircleLocation, 'x');
-	CircleAccelx2 *= judg.judgment(xCircleLocation2, 'x');
-	CircleAccely *= judg.judgment(yCircleLocation, 'y');
-	CircleAccely2 *= judg.judgment(yCircleLocation2, 'y');
-    
-	//oneTriangle update
-	for (int i = 0; i < N; i++){
-        
-		xTriangleLocation[0][i] += TriangleAccelx[i];
-		yTriangleLocation[0][i] += TriangleAccely[i];
-		xTriangleLocation[1][i] = (ofGetWidth() / 2.0 - xTriangleLocation[0][i]) * 2 + xTriangleLocation[0][i];
-		yTriangleLocation[1][i] = (ofGetHeight() / 2.0 - yTriangleLocation[0][i]) * 2 + yTriangleLocation[0][i];
-        
-		TriangleAccelx[i] *= judg.judgment(xTriangleLocation[0][i], 'x');
-		TriangleAccely[i] *= judg.judgment(yTriangleLocation[0][i], 'y');
-        
+void ofApp::update(){
+	for (int i = 0; i < PIECES; i++){
+		TriangleDirectionVector[i].x *= friction;
+		TriangleDirectionVector[i].y *= friction;
+		TriangleDirectionVector[i].y += gravity;
+
+		for(int j = 0; j < 3; j++){
+			TrianglePositionVector[i][j].x += TriangleDirectionVector[i].x;
+			TrianglePositionVector[i][j].y += TriangleDirectionVector[i].y;
+
+			if (judg.locationJudgment2(TrianglePositionVector[i][j].y, 'y') == 0){
+				TriangleDirectionVector[i].x *= -0.9;
+				TriangleDirectionVector[i].y *= -0.9;
+			}
+			else {
+				TriangleDirectionVector[i].x *= judg.locationJudgment2(TrianglePositionVector[i][j].x, 'x');
+				TriangleDirectionVector[i].y *= judg.locationJudgment2(TrianglePositionVector[i][j].y, 'y');
+			}
+		}
 	}
-    
-    
-}	
-
-//--------------------------------------------------------------
-void Triangles::draw(){
-    
-	//oneCircle drawing
-	circle.oneCircle(xCircleLocation, yCircleLocation, 70, OUTLINE + 0.5, colorparam[rand() % 4]);
-	circle.oneCircle((ofGetWidth() / 2.0 - xCircleLocation) * 2 + xCircleLocation, (ofGetHeight() / 2.0 - yCircleLocation) * 2 + yCircleLocation, 80, OUTLINE + 0.5, colorparam[rand() % 4]);
-	circle.oneCircle(xCircleLocation2, yCircleLocation2, 70, OUTLINE + 0.5, colorparam[rand() % 4]);
-	circle.oneCircle((ofGetWidth() / 2.0 - xCircleLocation2) * 2 + xCircleLocation2, (ofGetHeight() / 2.0 - yCircleLocation2) * 2 + yCircleLocation2, 90, OUTLINE + 0.5, colorparam[rand() % 4]);
-    
-	//oneTriangle drawing
-	triangle.oneTriangle(xTriangleLocation[0], yTriangleLocation[0], OUTLINE, colorparam[rand() % 4]);
-	triangle.oneTriangle(xTriangleLocation[1], yTriangleLocation[1], OUTLINE, colorparam[rand() % 4]);
-    
 }
 
 //--------------------------------------------------------------
-void Triangles::keyPressed(int key){
-    
-}
-
-//--------------------------------------------------------------
-void Triangles::keyReleased(int key){
-    
-}
-
-//--------------------------------------------------------------
-void Triangles::mouseMoved(int x, int y){
-    
-}
-
-//--------------------------------------------------------------
-void Triangles::mouseDragged(int x, int y, int button){
-    
-}
-
-//--------------------------------------------------------------
-void Triangles::mousePressed(int x, int y, int button){
-    
-}
-
-//--------------------------------------------------------------
-void Triangles::mouseReleased(int x, int y, int button){
-    
-}
-
-//--------------------------------------------------------------
-void Triangles::windowResized(int w, int h){
-    
-}
-
-//--------------------------------------------------------------
-void Triangles::gotMessage(ofMessage msg){
-    
-}
-
-//--------------------------------------------------------------
-void Triangles::dragEvent(ofDragInfo dragInfo){
-    
+void ofApp::draw(){
+	for (int i = 0; i < PIECES; i++){
+		ofPushMatrix();
+		ofTranslate(TriangleDirectionVector[i].x, TriangleDirectionVector[i].y);
+		triangle.drawTriangle(TrianglePositionVector[i][0].x, TrianglePositionVector[i][0].y, 
+			TrianglePositionVector[i][1].x, TrianglePositionVector[i][1].y, TrianglePositionVector[i][2].x,
+			TrianglePositionVector[i][2].y, OUTLINE, colorparam[i % 4], pattern[i], 127);
+		ofPopMatrix();
+	}
 }
