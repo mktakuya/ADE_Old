@@ -28,6 +28,10 @@ void Drawfigure::drawTriangle(float x1, float y1, float x2, float y2, float x3, 
 	}
 
 	else{
+		ofSetColor(255);
+		ofNoFill();
+		ofSetLineWidth(diff);
+		ofTriangle(x1, y1, x2, y2, x3, y3);
 		ofSetColor(color[0], color[1], color[2], alpha);
 		ofFill();
 		ofTriangle(x1, y1, x2, y2, x3, y3);
